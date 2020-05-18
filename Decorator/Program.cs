@@ -56,6 +56,7 @@ namespace Decorator
     class SpecialOffer : CarDecoratorBase
     {
         public int DiscountPercentege { get; set; }
+        public int Vergi { get; set; }
 
         private readonly CarBase _carBase;
 
