@@ -1,4 +1,5 @@
 ﻿using System;
+using Ninject;
 
 namespace DependenceInjection
 {
@@ -6,7 +7,9 @@ namespace DependenceInjection
     {
         static void Main(string[] args)
         {
-            ProductManager productManager = new ProductManager(new ProductDal());
+            IKernel kernel = new StandardKernel();
+            kernel.Bind<IProductDal>().To<ProductDal>().InSingletonScope();
+            ProductManager productManager = new ProductManager(kernel.Get<IProductDal>());
             productManager.Save();
 
             Console.ReadLine();
